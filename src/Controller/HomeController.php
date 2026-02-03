@@ -20,13 +20,13 @@ final class HomeController extends AbstractController
     public function thanks(): Response
     {
         $thanks = "Merci à tous les contributeurs !";
-        return $this->render('home/thanks.html.twig', [
+        return $this->render('home/index.html.twig', [
             'controller_name' => 'Merci pour votre visite',
             'remerciement' => $thanks,
         ]);
     }
 
-    #[Route('/home/{name}', name: 'app_home')]
+    #[Route('/home/{name}', name: 'app_home_name')]
     public function paramURL($name): Response
     {
         return $this->render('home/index.html.twig', [

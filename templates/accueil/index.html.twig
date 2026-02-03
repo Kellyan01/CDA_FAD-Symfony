@@ -11,11 +11,15 @@
 <div class="example-wrapper">
     <h1>Hello {{ controller_name }}! ✅</h1>
 
-    <h2>Tu t'appelles {{ test_name }}</h2>
+    
+        <h2>Tu t'appelles {{ test_name ?? 'TEST' }}</h2>
+    
 
-    <p>L'addition de {{nbr1}} et {{nbr2}} est égale au résultat : {{ nbr1 + nbr2 }}</p>
+    {% if nbr1 is defined and nbr2 is defined and message is defined %}
+        <p>L'addition de {{nbr1}} et {{nbr2}} est égale au résultat : {{ nbr1 + nbr2 }}</p>
 
-    <p>{{message}}</p>
+        <p>{{message}}</p>
+    {% endif %}
 
     This friendly message is coming from:
     <ul>
