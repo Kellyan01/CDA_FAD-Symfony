@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello UserController!{% endblock %}
+
+{% block body %}
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+</style>
+
+<div class="example-wrapper">
+    <h1>Hello {{ controller_name }}! ✅</h1>
+
+    {# vérifier si on a un tableau de sellers est défini #}
+    {% if sellers is defined %}
+        <h2>Liste des Sellers</h2>
+        <ul>
+        {% for seller in sellers %}
+                            {# fonction path() : permet de générer une url en donnant le nom de la route ciblée, en option, un objet permet de fournir les paramètres d'url #}
+            <li> <a href=" {{ path('app_seller_id', {'id':seller.id} ) }} "> {{ seller.nameSeller }} {{ seller.firstnameSeller }} </a> </li>
+            <ul>
+                {% if seller.tickets %}
+                    {% for ticket in seller.tickets %}
+                        {# utilisation d'un filter twig pour formater l'objet DateTimeImmutable en chaîne de caractère Date #}
+                        <li>- {{ ticket.createdAt | date("d/m/Y") }}</li>
+                    {% endfor %}
+                {% endif %}
+            </ul>
+        {% endfor %}
+        </ul>
+    {% endif %}
+
+    {# vérifier si on a un seller défini #}
+    {% if seller is defined %}
+        <h2>Nom : {{ seller.nameSeller }}</h2>
+        <h2>Prénom : {{ seller.firstnameSeller }}</h2>
+        <h3>Email : {{ seller.emailSeller }}</h3>
+    {% endif %}
+
+    {# vérifier si on a un sellerEmail défini #}
+    {% if sellerEmail is defined %}
+        <h2>Nom : {{ sellerEmail.nameSeller }}</h2>
+        <h2>Prénom : {{ sellerEmail.firstnameSeller }}</h2>
+        <h3>Email : {{ sellerEmail.emailSeller }}</h3>
+    {% endif %}
+</div>
+{% endblock %}

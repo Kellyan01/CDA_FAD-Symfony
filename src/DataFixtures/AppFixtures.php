@@ -8,6 +8,8 @@ use Faker;
 
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
+
+//Importer les Entity de nos tables
 use App\Entity\Seller;
 use App\Entity\Product;
 use App\Entity\Ticket;
