@@ -9,6 +9,10 @@ use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints\Unique;
 
+//Validator : permet de renforcer la validation d'un formulaire lorsqu'on utilise isValid() dans le Controller
+use Symfony\Component\Validator\Validator\ValidatorInterface;
+use Symfony\Component\Validator\Constraints as Assert;
+
 #[ORM\Entity(repositoryClass: ProductRepository::class)]
 class Product
 {
@@ -18,6 +22,9 @@ class Product
     private ?int $id = null;
 
     #[ORM\Column(length: 50, unique: true)]
+    //Exemple d'Assert comme contrainte de Validation
+    #[Assert\Length(min : 1, max : 10, maxMessage : "Limite de 10 caractères", minMessage : "au moins 1 caractère" )]
+    #[Assert\NotBlank(message : 'Le Nom ne doit pas être Vide')]
     private ?string $name_product = null;
 
     #[ORM\Column(type: Types::TEXT, nullable: true)]
